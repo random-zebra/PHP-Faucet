@@ -33,6 +33,7 @@ $config = array(
 
     // Coin
     "coinname" => "PIVX",
+	"shortname" => "tPIV",
 
 	// RPC settings:
     "rpc_user" => "rpcuser",
@@ -52,6 +53,10 @@ $config = array(
 	"maximum_payout" => 1500, // maximum coins to be awarded
 	"payout_threshold" => 5000, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
 	"payout_interval" => "10m", // payout interval, the wait time for a user between payouts. Type any numerical value with either a "m" (minutes), "h" (hours), or "d" (days), attached. Examples: 50m for a 50 minute delay, 7h for a 7 hour delay, etc.
+	
+	// Links
+	"explorer_lnk" => "https://testnet.pivx.link",	// link to block explorer
+	"github_lnk" => "https://github.com/PIVX-Project/PIVX",	// link to github page
 
 
     // Payment system:

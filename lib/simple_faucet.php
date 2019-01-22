@@ -251,6 +251,9 @@ class simple_faucet
 
                 case "coinname":
 	               return $config["coinname"];
+				   
+				case "shortname":
+					return $config["shortname"];
 
 				case "balance":
 					return $balance;
@@ -308,6 +311,12 @@ class simple_faucet
 					
 				case "payout_interval":
 					return $config["payout_interval"];
+					
+				case "explorer_lnk":
+					return $config["explorer_lnk"];
+				
+				case "github_lnk":
+					return $config["github_lnk"];
 					
 
 				// current user information:

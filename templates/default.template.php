@@ -44,18 +44,18 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a href=".">
-              <img alt="Brand" src="pivx.png" class="mybrand">
+              <img alt="Brand" src="logo.png" class="mybrand">
             </a>
           </div>
          <ul class="nav navbar-nav navbar-right">
-		   <li><a href="https://github.com/PIVX-Project/PIVX" target="_blank">PIVX Github</a></li>
-           <li><a href="https://testnet.pivx.link" target="_blank">Testnet Block Explorer</a></li>
+		   <li><a href="{{GITHUB_LNK}}" target="_blank">{{COINNAME}} Github</a></li>
+           <li><a href="{{EXPLORER_LNK}}" target="_blank">Testnet Block Explorer</a></li>
          </ul>
         </div>
       </nav>
 
    <div class="page-header">
-      <h1>PIVX Testnet Faucet</h1>
+      <h1>{{COINNAME}} Testnet Faucet</h1>
    </div>
 
 <div class="panel panel-default">
@@ -64,15 +64,15 @@
     </div>
     <div class="panel-body">
         <span>Balance:</span>
-        <span class="highlight">{{BALANCE}}</span> {{COINNAME}}<br/>
-        Already paid: <span class="highlight" >{{TOTAL_PAYOUT}}</span> with <span class="highlight" >{{NUMBER_OF_PAYOUTS}}</span> payouts<br/><br/>
+        <span class="highlight">{{BALANCE}}</span> {{SHORTNAME}}<br/>
+        Already paid: <span class="highlight" >{{TOTAL_PAYOUT}}</span> {{SHORTNAME}} with <span class="highlight" >{{NUMBER_OF_PAYOUTS}}</span> payouts<br/><br/>
 
         How many payments are currently staged: <span class="highlight" >{{STAGED_PAYMENT_COUNT}}</span> payments.<br/>
 
         How many payments are left before they are executed: <span class="highlight" >{{STAGED_PAYMENTS_LEFT}}</span> payments.<br/>
 
         Payments will be done after <span class="highlight" >{{STAGED_PAYMENT_THRESHOLD}}</span> staged payments or automated every 10 minutes.<br/><br/>
-        You can get free {{COINNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.
+        You can get free {{SHORTNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.
   </div>
 </div>
 
@@ -132,8 +132,8 @@
             <h3 class="panel-title">Status</h3>
         </div>
         <div class="panel-body">
-            Success! You have been awarded with {{PAYOUT_AMOUNT}} {{COINNAME}}!<br>
-            Transaction: <a href="https://testnet.veil-project.com/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
+            Success! You have been awarded with {{PAYOUT_AMOUNT}} {{SHORTNAME}}!<br>
+            Transaction: <a href="{{EXPLORER_TX}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
         </div>
     </div>
     <?php
@@ -159,7 +159,7 @@
             <h3 class="panel-title">Status</h3>
         </div>
         <div class="panel-body">
-            Something went wrong, could not send you {{COINNAME}}... Please try again later.
+            Something went wrong, could not send you {{SHORTNAME}}... Please try again later.
         </div>
     </div>
     <?php
@@ -171,7 +171,7 @@
             <h3 class="panel-title">Status</h3>
         </div>
         <div class="panel-body">
-            No more {{COINNAME}} for you! Try again later.
+            No more {{SHORTNAME}} for you! Try again later.
         </div>
     </div>
     <?php
