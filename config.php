@@ -48,16 +48,16 @@ $config = array(
 	"mysql_table_prefix" => "sf_", // table prefix to use
 
 	// Coin values:
-	"minimum_payout" => 5, // minimum coins to be awarded
-	"maximum_payout" => 20, // maximum coins to be awarded
-	"payout_threshold" => 30, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
-	"payout_interval" => "1h", // payout interval, the wait time for a user between payouts. Type any numerical value with either a "m" (minutes), "h" (hours), or "d" (days), attached. Examples: 50m for a 50 minute delay, 7h for a 7 hour delay, etc.
+	"minimum_payout" => 100, // minimum coins to be awarded
+	"maximum_payout" => 1500, // maximum coins to be awarded
+	"payout_threshold" => 5000, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
+	"payout_interval" => "10m", // payout interval, the wait time for a user between payouts. Type any numerical value with either a "m" (minutes), "h" (hours), or "d" (days), attached. Examples: 50m for a 50 minute delay, 7h for a 7 hour delay, etc.
 
 
     // Payment system:
 	"stage_payments" => false, // stage payments in the database, to be executed later
 	"stage_payment_account_name" => "", // account name to send transactions with, needs to be valid // you also can leave it empty
-	"staged_payment_threshold" => 60, // staged payment threshold, all staged payments are executed when this number is reached
+	"staged_payment_threshold" => 5, // staged payment threshold, all staged payments are executed when this number is reached
 	"staged_payment_cron_only" => false, // ignore the stage_amount counter, only execute staged payments when the cron script is called
 
 	// this option has 3 possible values: "ip_address", "coin_address", and "both". It defines what to check for when a user enters a coin address in order to decide whether or not to award coins to this user.

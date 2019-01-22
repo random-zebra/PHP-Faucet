@@ -294,9 +294,21 @@ class simple_faucet
 							}
 						}
 					return 0;
+					
+				// config
 
 				case "staged_payment_threshold":
 					return $config["staged_payment_threshold"];
+					
+				case "minimum_payout":
+					return $config["minimum_payout"];
+					
+				case "maximum_payout":
+					return $config["maximum_payout"];
+					
+				case "payout_interval":
+					return $config["payout_interval"];
+					
 
 				// current user information:
 				case "payout_amount":

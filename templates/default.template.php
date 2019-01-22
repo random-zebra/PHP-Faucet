@@ -71,8 +71,8 @@
 
         How many payments are left before they are executed: <span class="highlight" >{{STAGED_PAYMENTS_LEFT}}</span> payments.<br/>
 
-        Payments will be done after <span class="highlight" >{{STAGED_PAYMENT_THRESHOLD}}</span> staged payments or automated hourly.<br/><br/>
-        You can get free {{COINNAME}} every hour.
+        Payments will be done after <span class="highlight" >{{STAGED_PAYMENT_THRESHOLD}}</span> staged payments or automated every 10 minutes.<br/><br/>
+        You can get free {{COINNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.
   </div>
 </div>
 
