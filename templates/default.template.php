@@ -133,7 +133,7 @@
         </div>
         <div class="panel-body">
             Success! You have been awarded with {{PAYOUT_AMOUNT}} {{SHORTNAME}}!<br>
-            Transaction: <a href="{{EXPLORER_TX}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
+            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
         </div>
     </div>
     <?php
@@ -147,7 +147,7 @@
         <div class="panel-body">
             Success! You have been awarded with {{PAYOUT_AMOUNT}} {{COINNAME}}!<br/>
             Additionally, you received a bonus of {{PROMO_PAYOUT_AMOUNT}} {{COINNAME}}!<br>
-            Transaction: <a href="https://testnet.veil-project.com/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
+            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
         </div>
     </div>
 	<?php
@@ -199,7 +199,7 @@
             <input  name="dogecoin_address" type="text" class="form-control" value="" placeholder="Enter your {{COINNAME}} address here" />
         </div>
         <div class="margintop" id="captcha">{{CAPTCHA}}</div>
-        <input id="send" name="dogecoin_submit" type="submit" class="btn btn-info btn-md btn-block margintop" value="Send {{COINNAME}}" />
+        <input id="send" name="dogecoin_submit" type="submit" class="btn btn-warning btn-md btn-block margintop" value="Send {{COINNAME}}" />
     </form>
 
 	<?php
