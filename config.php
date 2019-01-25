@@ -57,6 +57,8 @@ $config = array(
 	// Links
 	"explorer_lnk" => "https://testnet.pivx.link",	// link to block explorer
 	"github_lnk" => "https://github.com/PIVX-Project/PIVX",	// link to github page
+	"use_ogimage" => true,	// use a og:image in the webpage, link defined below
+	"ogimage_lnk" => "https://github.com/PIVX-Project/Official-PIVX-Graphics/blob/master/digital/landscape/Colour/Dark_Purple_ldsp.png",
 
 
     // Payment system:

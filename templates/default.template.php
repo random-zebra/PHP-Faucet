@@ -19,7 +19,14 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <meta property="og:image" content="https://veil-project.com/icons/logo.png" />
+	<?php
+        if ($this->config("use_ogimage"))
+        {
+    ?>
+    <meta property="og:image" content={{OGIMAGE_LNK}} />
+	<?php
+		}
+    ?>
 
     {{HEAD}}
 

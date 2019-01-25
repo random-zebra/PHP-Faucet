@@ -318,6 +318,9 @@ class simple_faucet
 				case "github_lnk":
 					return $config["github_lnk"];
 					
+				case "ogimage_lnk":
+					return $config["ogimage_lnk"];
+					
 
 				// current user information:
 				case "payout_amount":
