@@ -62,6 +62,17 @@ $config = array(
 
 
     // Payment system:
+	"display_send_method" => true,	// after making a payment, display which rpc call has been used
+	"send_methods" => array(
+		// ordered list of rpc call methods to use (lower index has higher priority)
+		// each entry is index => array("rpc", "args")
+		// "rpc" holds the name of the rpc method to call
+		// "args" holds the template for arguments (need to include strings "address" and "amount")
+		array(
+			"rpc" => "sendtoaddress",
+			"args" => array("address", "amount")
+		)
+	),
 	"stage_payments" => false, // stage payments in the database, to be executed later
 	"stage_payment_account_name" => "", // account name to send transactions with, needs to be valid // you also can leave it empty
 	"staged_payment_threshold" => 5, // staged payment threshold, all staged payments are executed when this number is reached
@@ -73,11 +84,11 @@ $config = array(
 	// "both": check both the IP and coins address in the payout history.
 	"user_check" => "both",
 
-	"use_captcha" => false, // require the user to enter a captcha
+	"use_captcha" => true, // require the user to enter a captcha
 
-	"captcha" => "recaptcha", // valid options: recaptcha, recaptcha2, solvemedia
+	"captcha" => "recaptcha2", // valid options: recaptcha, recaptcha2, solvemedia
 
-	"captcha_https" => false, // use https (only for recaptcha2) valid options: true, false
+	"captcha_https" => true, // use https (only for recaptcha2) valid options: true, false
 
 	// enter your private and public reCAPTCHA key here:
 	"captcha_config" => array(

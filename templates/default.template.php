@@ -140,7 +140,15 @@
         </div>
         <div class="panel-body">
             Success! You have been awarded with {{PAYOUT_AMOUNT}} {{SHORTNAME}}!<br>
-            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
+            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a><br>
+			<?php
+				if ($this->config("display_send_method"))
+				{
+			?>
+			(using <em>{{TX_SEND_METHOD}}</em> method)
+			<?php
+				}
+			?>
         </div>
     </div>
     <?php
@@ -154,7 +162,15 @@
         <div class="panel-body">
             Success! You have been awarded with {{PAYOUT_AMOUNT}} {{COINNAME}}!<br/>
             Additionally, you received a bonus of {{PROMO_PAYOUT_AMOUNT}} {{COINNAME}}!<br>
-            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a>
+            Transaction: <a href="{{EXPLORER_LNK}}/tx/{{TX_HASH}}" target="_blank">{{TX_HASH}}</a><br>
+			<?php
+				if ($this->config("display_send_method"))
+				{
+			?>
+			[using <em>{{TX_SEND_METHOD}}</em> method]
+			<?php
+				}
+			?>
         </div>
     </div>
 	<?php
@@ -167,6 +183,14 @@
         </div>
         <div class="panel-body">
             Something went wrong, could not send you {{SHORTNAME}}... Please try again later.
+						<?php
+				if ($this->config("display_send_method"))
+				{
+			?>
+			[using <em>{{TX_SEND_METHOD}}</em> method]
+			<?php
+				}
+			?>
         </div>
     </div>
     <?php
@@ -241,6 +265,6 @@
     ?>
 
 </div>
-
+<br><br>
 </body>
 </html>

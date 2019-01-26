@@ -166,26 +166,48 @@ class simple_faucet
 										$this->status = true ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR; // test status
 									else
 										{
+										// Stage Payment
 										if ($this->config["stage_payments"])
 											$this->status = $this->stage_payment($dogecoin_address,($this->payout_amount+$this->promo_payout_amount)) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR; // stage the DOGE;
+										// Or Execute it
 										else
-                                 {
-                                 $this->hash = $this->rpc("sendtoaddress",array($dogecoin_address, ($this->payout_amount+$this->promo_payout_amount) ));
-											$this->status = !is_null($this->hash) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR; // send the DOGE
-                                 // try stealth addresses
-                                 if ($this->status == SF_STATUS_PAYOUT_ERROR) {
-                                    $this->hash = $this->rpc("sendstealthtostealth",array($dogecoin_address, ($this->payout_amount+$this->promo_payout_amount) ));
-                                    $this->status = !is_null($this->hash) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR;
-                                 }
-                                 if ($this->status == SF_STATUS_PAYOUT_ERROR) {
-                                    $this->hash = $this->rpc("sendbasecointostealth",array($dogecoin_address, ($this->payout_amount+$this->promo_payout_amount) ));
-                                    $this->status = !is_null($this->hash) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR; // send the DOGE
-                                 }
-                                 }
-										}
+											{
+											// select first send method
+											$send_method = array(
+													"rpc" => "sendtoaddress",
+													"args" => array("address", "amount")
+											);
+											$send_method_index = 0;
+											$send_methods_count = count($this->config["send_methods"]);
+											if ($send_methods_count > 0)
+												$send_method = $this->config["send_methods"][0];
+											$send_args = $send_method["args"];
+											// search and replace the keys (address and amount)
+											$send_args = array_replace($send_args, array_fill_keys(array_keys($send_args, "address"), $dogecoin_address));
+											$send_args = array_replace($send_args, array_fill_keys(array_keys($send_args, "amount"), ($this->payout_amount+$this->promo_payout_amount)));
+											$this->hash = $this->rpc($send_method["rpc"], $send_args);
+											$this->status = !is_null($this->hash) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR;
+											// if first method fails, try the others -if enabled-
+											$send_method_index++;
+											while ($send_methods_count > $send_method_index && $this->status == SF_STATUS_PAYOUT_ERROR) {
+												$send_method = $this->config["send_methods"][$send_method_index];
+												$send_args = $send_method["args"];
+												// search and replace the keys (address and amount)
+												$send_args = array_replace($send_args, array_fill_keys(array_keys($send_args, "address"), $dogecoin_address));
+												$send_args = array_replace($send_args, array_fill_keys(array_keys($send_args, "amount"), ($this->payout_amount+$this->promo_payout_amount)));
+												$this->hash = $this->rpc($send_method["rpc"], $send_args);
+												$this->status = !is_null($this->hash) ? $this->promo_payout_amount>0 ? SF_STATUS_PAYOUT_AND_PROMO_ACCEPTED : SF_STATUS_PAYOUT_ACCEPTED : SF_STATUS_PAYOUT_ERROR;
+												$send_method_index++;
+											}
+											// save method used - for debug
+											$this->send_method_used = $send_method["rpc"];
+											$this->send_args_used = implode(', ', $send_args);
 
-									if ($this->config["wallet_passphrase"] != "")
-										$this->rpc("walletlock"); // lock wallet
+											// Lock wallet
+											if ($this->config["wallet_passphrase"] != "")
+												$this->rpc("walletlock");
+											}
+										}
 									}
 								}
 							else
@@ -232,7 +254,7 @@ class simple_faucet
 		$payout_amount = $this->payout_amount;
 		$payout_address = $this->payout_address;
 		$promo_payout_amount = $this->promo_payout_amount;
-      $tx_hash = $this->hash;
+		$tx_hash = isset($this->hash) ? $this->hash : "";
 
 		$template = preg_replace_callback("/\{\{([a-zA-Z-0-9\ \_]+?)\}\}/",function($match) use ($self,$db,$header,$status,$config,$balance,$payout_amount,$payout_address,$promo_payout_amount,$tx_hash)
 			{
@@ -331,12 +353,20 @@ class simple_faucet
 
 				case "promo_payout_amount":
 					return $promo_payout_amount;
+					
+				
+				// current payment
 
-            case "tx_hash":
-               return $tx_hash;
+				case "tx_hash":
+					return $tx_hash;
+					
+				case "tx_send_method":
+					return $this->send_method_used;
+					
+				case "tx_send_args":
+					return $this->send_args_used;
 
 				// CAPTCHA:
-
 				case "captcha":
 					if ($config["use_captcha"])
 						{
