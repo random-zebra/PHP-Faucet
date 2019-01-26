@@ -278,7 +278,7 @@ class simple_faucet
 					return $config["shortname"];
 
 				case "balance":
-					return $balance;
+					return number_format($balance, 2, '.', '\'');
 
 				// statistics:
 				case "average_payout":
@@ -286,13 +286,13 @@ class simple_faucet
 
 				case "total_payout":
 				case "total_payouts":
-					return $self->payout_aggregate("SUM");
+					return number_format($self->payout_aggregate("SUM"), 2, '.', '\'');
 
 				case "smallest_payout":
-					return $self->payout_aggregate("MIN");
+					return number_format($self->payout_aggregate("MIN"), 6, '.', '\'');
 
 				case "largest_payout":
-					return $self->payout_aggregate("MAX");
+					return number_format($self->payout_aggregate("MAX"), 6, '.', '\'');
 
 				case "number_of_payouts":
 					return $self->payout_aggregate("COUNT");
