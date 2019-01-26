@@ -231,7 +231,7 @@
             <input  name="dogecoin_address" type="text" class="form-control" value="" placeholder="Enter your {{COINNAME}} address here" />
         </div>
         <div class="margintop" id="captcha">{{CAPTCHA}}</div>
-        <input id="send" name="dogecoin_submit" type="submit" class="btn btn-warning btn-md btn-block margintop" value="Send {{COINNAME}}" />
+        <input id="send" name="dogecoin_submit" type="submit" class="btn btn-info btn-md btn-block margintop" value="Send {{COINNAME}}" />
     </form>
 
 	<?php

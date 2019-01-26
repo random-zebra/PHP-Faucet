@@ -32,33 +32,33 @@ SOFTWARE.
 $config = array(
 
     // Coin
-    "coinname" => "PIVX",
-	"shortname" => "tPIV",
+    "coinname" => "Veil",
+	"shortname" => "Veil",
 
 	// RPC settings:
-    "rpc_user" => "rpcuser",
-	"rpc_password" => "rpcpassword",
+    "rpc_user" => "veilrpc",
+	"rpc_password" => "",
 	"rpc_host" => "127.0.0.1",
-	"rpc_port" => "51473",
+	"rpc_port" => "58813",
 
 	// MySQL settings:
-    "mysql_user" => "db_user",
-	"mysql_password" => "db_password",
+        "mysql_user" => "",
+	"mysql_password" => "",
 	"mysql_host" => "localhost",
 	"mysql_database" => "faucet", // faucet database name
 	"mysql_table_prefix" => "sf_", // table prefix to use
 
 	// Coin values:
-	"minimum_payout" => 100, // minimum coins to be awarded
-	"maximum_payout" => 1500, // maximum coins to be awarded
-	"payout_threshold" => 5000, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
+	"minimum_payout" => 10, // minimum coins to be awarded
+	"maximum_payout" => 500, // maximum coins to be awarded
+	"payout_threshold" => 800, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
 	"payout_interval" => "10m", // payout interval, the wait time for a user between payouts. Type any numerical value with either a "m" (minutes), "h" (hours), or "d" (days), attached. Examples: 50m for a 50 minute delay, 7h for a 7 hour delay, etc.
 	
 	// Links
-	"explorer_lnk" => "https://testnet.pivx.link",	// link to block explorer
-	"github_lnk" => "https://github.com/PIVX-Project/PIVX",	// link to github page
+	"explorer_lnk" => "https://testnet.veil-project.com",	// link to block explorer
+	"github_lnk" => "https://github.com/Veil-Project/Veil",	// link to github page
 	"use_ogimage" => true,	// use a og:image in the webpage, link defined below
-	"ogimage_lnk" => "https://github.com/PIVX-Project/Official-PIVX-Graphics/blob/master/digital/landscape/Colour/Dark_Purple_ldsp.png",
+	"ogimage_lnk" => "https://veil-project.com/icons/logo.png",
 
 
     // Payment system:
@@ -92,8 +92,8 @@ $config = array(
 
 	// enter your private and public reCAPTCHA key here:
 	"captcha_config" => array(
-		"private_key" => "privatekey",
-		"public_key" => "publickey"
+		"private_key" => "xxx",
+		"public_key" => "xxx"
 		),
 
 	// enter your private and public solvemedia key here:
@@ -115,10 +115,10 @@ $config = array(
 	"wallet_passphrase" => "",
 
 	// Donation address:
-	"donation_address" => "yBX3wx55kxntuzWWLujYrHH2fW4rZqdyTQ", // donation address to display
+	"donation_address" => "tps1qqph0n7p6g2zzvr0hhdnywznx8u8llyr7khvce7v8lkadajx79dqalcpqd9gxns2q62ld07802g95hhcsjk9wh9jdzkuc5wq9hv8xlaxlw2p7qqqn00lur", // donation address to display
 
 	// Faucet look and feel:
-	"title" => "PIVX Testnet Faucet", // page title, may be used by the template too
+	"title" => "Veil Testnet Faucet", // page title, may be used by the template too
 	"template" => "default", // template to use (see the templates directory)
     //code for advertisements:
     "ads" => "<iframe></iframe>"
