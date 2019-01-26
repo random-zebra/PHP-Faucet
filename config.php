@@ -68,10 +68,12 @@ $config = array(
 		// each entry is index => array("rpc", "args")
 		// "rpc" holds the name of the rpc method to call
 		// "args" holds the template for arguments (need to include strings "address" and "amount")
+		/*
 		array(
 			"rpc" => "spendzerocoin",
 			"args" => array("amount", true, true, 100, "address")
 		),
+		*/
 		array(
 			"rpc" => "sendringcttoringct",
 			"args" => array("address", "amount")
@@ -94,6 +96,10 @@ $config = array(
 		),
 		array(
 			"rpc" => "sendstealthtobasecoin",
+			"args" => array("address", "amount")
+		),
+		array(
+			"rpc" => "sendbasecointostealth",
 			"args" => array("address", "amount")
 		),
 		array(

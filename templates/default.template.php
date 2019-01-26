@@ -70,8 +70,7 @@
         <h3 class="panel-title">Faucet stats</h3>
     </div>
     <div class="panel-body">
-		<!--
-        <span>Zerocoin Balance:</span>
+        <!--<span>Zerocoin Balance:</span>
         <span class="highlight">{{BAL_ZEROCOIN}}</span> {{SHORTNAME}}<br/>-->
 		<span>RingCT Balance:</span>
         <span class="highlight">{{BAL_RINGCT}}</span> {{SHORTNAME}}<br/>
@@ -87,8 +86,7 @@
         How many payments are left before they are executed: <span class="highlight" >{{STAGED_PAYMENTS_LEFT}}</span> payments.<br/>
 
         Payments will be done after <span class="highlight" >{{STAGED_PAYMENT_THRESHOLD}}</span> staged payments or automated every 10 minutes.<br/><br/>
-        You can get free {{SHORTNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.<br>
-		Transactions will use the most private method available.
+        You can get free {{SHORTNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.
   </div>
 </div>
 
