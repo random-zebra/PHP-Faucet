@@ -14,7 +14,7 @@ class simple_faucet
 
 	protected $promo_payout_amount = 0;
 
-	protected $balance = 0;
+	protected $balances;
 
 	protected $header = '';
 
@@ -81,9 +81,16 @@ class simple_faucet
 
 				$this->db = @new mysqli($config["mysql_host"],$config["mysql_user"],$config["mysql_password"],$config["mysql_database"]);
 				//if (!$this->db->connect_error)
-				if (!mysqli_connect_error() && !is_null($this->balance = $this->rpc("getbalance"))) // compatibility with older PHP versions
+				$this->balances = $this->rpc("getbalances");
+				if (!mysqli_connect_error() && !is_null($this->balances)) // compatibility with older PHP versions
 					{
-					if ($this->balance >= $this->config["payout_threshold"])
+					$this->balance_amounts = array(
+						"zerocoin" => $this->balances["zerocoin_spendable"],
+						"ringct" => $this->balances["ringct_spendable"],
+						"ct" => $this->balances["ct_spendable"],
+						"basecoin" => $this->balances["basecoin_spendable"]
+					);
+					if (max($this->balance_amounts) >= $this->config["payout_threshold"])
 						{
 						$this->status = SF_STATUS_OPERATIONAL;
 
@@ -250,13 +257,16 @@ class simple_faucet
 		$header = $this->header;
 		$status = $this->status;
 		$config = $this->config;
-		$balance = $this->balance;
+		$bal_zerocoin = $this->balance_amounts["zerocoin"];
+		$bal_ringct = $this->balance_amounts["ringct"];
+		$bal_ct = $this->balance_amounts["ct"];
+		$bal_basecoin = $this->balance_amounts["basecoin"];
 		$payout_amount = $this->payout_amount;
 		$payout_address = $this->payout_address;
 		$promo_payout_amount = $this->promo_payout_amount;
 		$tx_hash = isset($this->hash) ? $this->hash : "";
 
-		$template = preg_replace_callback("/\{\{([a-zA-Z-0-9\ \_]+?)\}\}/",function($match) use ($self,$db,$header,$status,$config,$balance,$payout_amount,$payout_address,$promo_payout_amount,$tx_hash)
+		$template = preg_replace_callback("/\{\{([a-zA-Z-0-9\ \_]+?)\}\}/",function($match) use ($self,$db,$header,$status,$config,$bal_zerocoin,$bal_ringct,$bal_ct,$bal_basecoin,$payout_amount,$payout_address,$promo_payout_amount,$tx_hash)
 			{
 			switch (strtolower($match[1]))
 				{
@@ -277,8 +287,17 @@ class simple_faucet
 				case "shortname":
 					return $config["shortname"];
 
-				case "balance":
-					return number_format($balance, 2, '.', '\'');
+				case "bal_zerocoin":
+					return number_format($bal_zerocoin, 2, '.', '\'');
+				
+				case "bal_ringct":
+					return number_format($bal_ringct, 2, '.', '\'');
+					
+				case "bal_ct":
+					return number_format($bal_ct, 2, '.', '\'');
+					
+				case "bal_basecoin":
+					return number_format($bal_basecoin, 2, '.', '\'');
 
 				// statistics:
 				case "average_payout":

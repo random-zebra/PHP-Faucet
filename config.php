@@ -50,8 +50,8 @@ $config = array(
 
 	// Coin values:
 	"minimum_payout" => 10, // minimum coins to be awarded
-	"maximum_payout" => 500, // maximum coins to be awarded
-	"payout_threshold" => 800, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
+	"maximum_payout" => 200, // maximum coins to be awarded
+	"payout_threshold" => 500, // payout threshold, if the faucet contains less coins than this, display the 'dry_faucet' message
 	"payout_interval" => "10m", // payout interval, the wait time for a user between payouts. Type any numerical value with either a "m" (minutes), "h" (hours), or "d" (days), attached. Examples: 50m for a 50 minute delay, 7h for a 7 hour delay, etc.
 	
 	// Links

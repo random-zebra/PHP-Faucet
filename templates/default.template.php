@@ -70,8 +70,15 @@
         <h3 class="panel-title">Faucet stats</h3>
     </div>
     <div class="panel-body">
-        <span>Balance:</span>
-        <span class="highlight">{{BALANCE}}</span> {{SHORTNAME}}<br/>
+		<!--
+        <span>Zerocoin Balance:</span>
+        <span class="highlight">{{BAL_ZEROCOIN}}</span> {{SHORTNAME}}<br/>-->
+		<span>RingCT Balance:</span>
+        <span class="highlight">{{BAL_RINGCT}}</span> {{SHORTNAME}}<br/>
+		<span>CT Balance:</span>
+        <span class="highlight">{{BAL_CT}}</span> {{SHORTNAME}}<br/>
+		<span>Basecoin Balance:</span>
+        <span class="highlight">{{BAL_BASECOIN}}</span> {{SHORTNAME}}<br/>
         Already paid: <span class="highlight" >{{TOTAL_PAYOUT}}</span> {{SHORTNAME}} with <span class="highlight" >{{NUMBER_OF_PAYOUTS}}</span> payouts 
 		(largest payout: <span class="highlight" >{{LARGEST_PAYOUT}}</span>,  smallest payout: <span class="highlight" >{{SMALLEST_PAYOUT}}</span>).<br/><br/>
 
@@ -80,7 +87,8 @@
         How many payments are left before they are executed: <span class="highlight" >{{STAGED_PAYMENTS_LEFT}}</span> payments.<br/>
 
         Payments will be done after <span class="highlight" >{{STAGED_PAYMENT_THRESHOLD}}</span> staged payments or automated every 10 minutes.<br/><br/>
-        You can get free {{SHORTNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.
+        You can get free {{SHORTNAME}} (between <span class="highlight" >{{MINIMUM_PAYOUT}}</span> and <span class="highlight" >{{MAXIMUM_PAYOUT}}</span>) every <span class="highlight" >{{PAYOUT_INTERVAL}}</span>.<br>
+		Transactions will use the most private method available.
   </div>
 </div>
 
